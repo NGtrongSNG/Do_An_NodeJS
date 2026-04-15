@@ -1,35 +1,14 @@
-const express = require('express');
-const app = express();
-app.set('view engine', 'ejs');
-app.use(express.static('public'))
+const express = require('express')
+const app = express()
 
-// app.get('/', (req, res) => {
-//     res.render('layout', { content: 'index.ejs' })
-// })
-// app.get('/category', (req, res) => {
-//     res.render('layout', { content: 'category.ejs' })
-// })
-// app.get('/single', (req, res) => {
-//     res.render('layout', { content: 'single.ejs' })
-// })
-// app.get('/contact', (req, res) => {
-//     res.render('layout', { content: 'contact.ejs' })
-// })
+const pageRouter = require('./views/routes/pages')
+const adminRouter = require('./views/routes/admin')
 
-app.get('/', (req, res) => {
-    res.render('layout', { content: 'index', activePage: 'home' })
-})
-app.get('/category', (req, res) => {
-    res.render('layout', { content: 'category', activePage: 'category' })
-})
-app.get('/single', (req, res) => {
-    res.render('layout', { content: 'single', activePage: 'single' })
-})
-app.get('/contact', (req, res) => {
-    res.render('layout', { content: 'contact', activePage: 'contact' })
-})
+app.use('/', pageRouter)
+app.use('/admin', adminRouter)
 
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.use(express.static(__dirname + '/public'))
 
-app.listen(3000, (req, res) => {
-    console.log("Start: localhost:3000");
-})
+app.listen(3000, () => console.log('Server chạy ở http://localhost:3000'))
