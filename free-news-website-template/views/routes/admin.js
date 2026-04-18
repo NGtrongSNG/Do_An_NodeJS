@@ -4,8 +4,13 @@ const router = express.Router()
 router.get('/', (req, res) => {
     res.render('layouts/layout_admin', { content: 'admin/dashboard', activePage: 'dashboard' })
 })
-
-router.get('/users', (req, res) => {
+router.get('/dashboard', (req, res) => {
+    res.render('layouts/layout_admin', {
+        content: 'admin/dashboard',
+        activePage: 'dashboard'
+    });
+});
+router.get('/user', (req, res) => {
     res.render('layouts/layout_admin', { content: 'admin/users', activePage: 'users' })
 })
 
@@ -16,5 +21,6 @@ router.get('/categories', (req, res) => {
 router.get('/articles', (req, res) => {
     res.render('layouts/layout_admin', { content: 'admin/articles', activePage: 'articles' })
 })
+
 
 module.exports = router 
