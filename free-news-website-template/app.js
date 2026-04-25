@@ -1,8 +1,15 @@
 const express = require('express')
 const app = express()
+const session = require('express-session');
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
 
-const pageRouter = require('./views/routes/pages')
-const adminRouter = require('./views/routes/admin')
+
+const pageRouter = require('./routes/pages')
+const adminRouter = require('./routes/admin')
 
 app.use('/', pageRouter)
 app.use('/admin', adminRouter)
