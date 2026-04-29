@@ -1,0 +1,61 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f9fa;
+}
+
+:root {
+    --gold: #ffc107;
+    --black-sidebar: #121212;
+}
+
+.text-gold { color: var(--gold) !important; }
+.bg-black { background-color: #000 !important; }
+
+/* Sidebar Style */
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 260px;
+    background-color: var(--black-sidebar);
+    transition: all 0.3s;
+}
+
+.sidebar-heading .logo-text {
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.sidebar-label {
+    padding: 20px 20px 5px 20px;
+    font-size: 0.75rem;
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bg-dark-sidebar {
+    background-color: var(--black-sidebar) !important;
+    border: none;
+}
+
+#sidebar-wrapper .list-group-item {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    border: none;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #1a1a1a !important;
+    color: #fff !important;
+    border-left: 4px solid var(--gold);
+}
+
+/* Page Content Wrapper */
+#page-content-wrapper {
+    width: 100%;
+}
+
+/* Toggle effect */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -260px;
+}

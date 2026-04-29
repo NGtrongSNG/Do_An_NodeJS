@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập Hệ thống BIZNEWS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212; /* Nền tối */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+        }
+        .card {
+            background-color: #1a1a1a; /* Màu card tối hơn nền */
+            border: 1px solid #ffc107; /* Viền vàng đặc trưng */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            padding-top: 30px;
+        }
+        .logo-text {
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .form-control {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .form-control:focus {
+            background-color: #2a2a2a;
+            color: #fff;
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+        }
+        label {
+            color: #ffc107;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .btn-login {
+            background-color: #ffc107;
+            border: none;
+            color: #000;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo-text"><span class="text-warning">BIZ</span>NEWS</div>
+                <p class="text-secondary small">Hệ Thống Quản Trị Viên</p>
+            </div>
+            <div class="card-body p-4">
+                <form action="/admin/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">TÊN ĐĂNG NHẬP</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Nhập tài khoản..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">MẬT KHẨU</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu..." required>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-login btn-block shadow-sm">
+                            Đăng Nhập Ngay
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer border-0 text-center pb-4">
+                <a href="/" class="text-secondary small text-decoration-none">← Quay lại trang chủ</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

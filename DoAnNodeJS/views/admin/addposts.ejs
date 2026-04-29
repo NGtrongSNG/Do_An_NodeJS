@@ -1,0 +1,68 @@
+<%- include('../partitals/admin/header') %>
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div class="d-flex" id="wrapper">
+
+                    <div id="page-content-wrapper" class="w-100">
+                        <nav class="navbar navbar-dark bg-black py-3 px-3">
+                            <span class="text-gold font-weight-bold">VIẾT BÀI MỚI</span>
+                        </nav>
+                        <div class="container-fluid p-4">
+                            <form action="/admin/posts/add" method="POST" enctype="multipart/form-data"
+                                class="bg-white p-4 shadow-sm">
+
+                                <div class="form-group">
+                                    <label>Tiêu đề bài báo</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Nhập tiêu đề..."
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Danh mục</label>
+                                    <select name="category_id" class="form-control" required>
+                                        <option value="">-- Chọn danh mục --</option>
+                                        <% categories.forEach(cat=> { %>
+                                            <option value="<%= cat.ID %>">
+                                                <%= cat.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tác Giả</label>
+                                    <select name="author_id" class="form-control">
+                                        <% authors.forEach(auth=> { %>
+                                            <option value="<%= auth.author_id %>">
+                                                <%= auth.name_author %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tóm tắt bài viết (Summary)</label>
+                                    <textarea name="summary" class="form-control" rows="3"
+                                        placeholder="Viết đoạn tóm tắt ngắn gọn..." required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nội dung chi tiết</label>
+                                    <textarea name="content" class="form-control" rows="8"
+                                        placeholder="Viết nội dung ở đây..." required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Hình ảnh đại diện</label>
+                                    <input type="file" name="image" class="form-control-file" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-warning font-weight-bold mt-3">ĐĂNG BÀI
+                                    NGAY</button>
+                                <a href="/admin/posts" class="btn btn-secondary mt-3 ml-2">Hủy</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <%- include('../partitals/admin/footer') %>

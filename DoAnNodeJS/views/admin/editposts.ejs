@@ -1,0 +1,83 @@
+<%- include('../partitals/admin/header') %>
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div class="d-flex" id="wrapper">
+                    <div id="page-content-wrapper" class="w-100">
+                        <nav class="navbar navbar-dark bg-black py-3 px-3">
+                            <span class="text-gold font-weight-bold">CHỈNH SỬA BÀI VIẾT</span>
+                        </nav>
+                        <div class="container-fluid p-4">
+                            <form action="/admin/posts/edit/<%= post.ID %>" method="POST" enctype="multipart/form-data"
+                                class="bg-white p-4 shadow-sm">
+
+                                <div class="form-group">
+                                    <label>Tiêu đề bài báo</label>
+                                    <input type="text" name="title" value="<%= post.Title %>" class="form-control"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Danh mục</label>
+                                    <select name="category_id" class="form-control" required>
+                                        <% categories.forEach(cat=> { %>
+                                            <option value="<%= cat.ID %>" <%=post.category_id===cat.ID ? 'selected' : ''
+                                                %>>
+                                                <%= cat.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tác Giả</label>
+                                    <select name="id_authors" class="form-control">
+                                        <% authors.forEach(auth=> { %>
+                                            <option value="<%= auth.ID %>" <%=post.author_id===auth.author_id
+                                                ? 'selected' : '' %>>
+                                                <%= auth.fullname %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tóm tắt bài viết (Summary)</label>
+                                    <textarea name="summary" class="form-control" rows="3"
+                                        required><%= post.Summary %></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nội dung chi tiết</label>
+                                    <textarea name="content" class="form-control" rows="8"
+                                        required><%= post.Content %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Trạng thái bài viết</label>
+                                    <select name="status" class="form-control">
+                                        <option value="1" <%=post.status==1 ? 'selected' : '' %>>🟢 Hiện (Xuất bản)
+                                        </option>
+                                        <option value="0" <%=post.status==0 ? 'selected' : '' %>>🔴 Ẩn (Bản nháp)
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình ảnh đại diện hiện tại</label><br>
+                                    <img src="/uploads/<%= post.Image %>" width="150" class="img-thumbnail mb-2"><br>
+
+                                    <input type="hidden" name="old_image" value="<%= post.Image %>">
+
+                                    <label>Chọn ảnh mới (Bỏ trống nếu muốn giữ nguyên ảnh cũ)</label>
+                                    <input type="file" name="image" class="form-control-file">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary font-weight-bold mt-3">LƯU THAY
+                                    ĐỔI</button>
+                                <a href="/admin/posts" class="btn btn-secondary mt-3 ml-2">Hủy</a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <%- include('../partitals/admin/footer') %>

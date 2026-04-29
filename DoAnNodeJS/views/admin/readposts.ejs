@@ -1,0 +1,93 @@
+<%- include('../partitals/admin/header') %>
+
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div id="page-content-wrapper" class="w-100">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+                        <span class="text-gold font-weight-bold ml-3">QUẢN LÝ BÀI VIẾT</span>
+                        <div class="ml-auto mr-3">
+                            <a href="/admin/posts/add" class="btn btn-warning btn-sm">
+                                <i class="fas fa-plus"></i> Viết bài mới
+                            </a>
+                        </div>
+                    </nav>
+
+                    <div class="container-fluid p-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <table class="table table-hover align-middle">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="5%">ID</th>
+                                            <th width="15%">Ảnh</th>
+                                            <th width="15%">Tiểu đề</th>
+                                            <th width="15%">Tác Giả</th>
+                                            <th width="15%">Ngày đăng</th>
+                                            <th width="15%">Danh mục</th>
+                                            <th width="10%">Trạng thái</th>
+                                            <th width="15%">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% posts.forEach(post=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= post.id %>
+                                                </td>
+                                                <td>
+                                                    <img src="../../public/img/<%= post.Image %>" alt="thumb"
+                                                        class="img-thumbnail"
+                                                        style="width: 100px; height: 60px; object-fit: cover;">
+                                                </td>
+                                                <td>
+                                                    <div class="font-weight-bold text-dark">
+                                                        <%= post.title %>
+                                                    </div>
+                                                <td>
+                                                        <%= post.fullname %>
+                                                </td>
+                                                <td><span class="badge badge-info">
+                                                        
+                                                    <%= post.formatted_date %>
+                                                </span></td>
+                                                
+                                                <td>
+                                                    <span class="badge badge-primary">
+                                                        <%= post.category_name %>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <% if(post.status==1) { %>
+                                                        <span class="badge badge-success">Đang hiện</span>
+                                                        <% } else { %>
+                                                            <span class="badge badge-danger">Đang ẩn</span>
+                                                            <% } %>
+                                                </td>
+                                                <td>
+                                                    <a href="/admin/posts/edit/<%= post.id %>"
+                                                        class="btn btn-sm btn-outline-primary"><i
+                                                            class="fas fa-edit"></i></a>
+                                                    <a href="/admin/posts/delete/<%= post.id %>"
+                                                        class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Em có chắc muốn xóa bài này không?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+
+                                <% if(posts.length==0) { %>
+                                    <div class="text-center p-5">
+                                        <p class="text-muted">Chưa có bài viết nào. Hãy đăng bài đầu tiên nhé!</p>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <%- include('../partitals/admin/footer') %>

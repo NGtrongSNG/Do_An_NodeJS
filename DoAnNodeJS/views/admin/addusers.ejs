@@ -1,0 +1,51 @@
+<%- include('../partitals/admin/header') %>
+    <%- include('../partitals/admin/sidebar') %>
+
+<div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="m-0"><i class="fas fa-user-plus mr-2"></i>Thêm Thành Viên Mới</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/admin/users/add" method="POST">
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Tên đăng nhập (Username)</label>
+                            <input type="text" name="username" class="form-control" placeholder="Ví dụ: nva123" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Mật khẩu</label>
+                            <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Họ và Tên</label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold">Phân quyền</label>
+                            <select name="role" class="form-control">
+                                <option value="user">Người dùng thường (User)</option>
+                                <option value="admin">Quản trị viên (Admin)</option>
+                                <option value="Author">Tác giả (Author)</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="/admin/users" class="btn btn-light border">Quay lại</a>
+                            <button type="submit" class="btn btn-primary px-4">Xác nhận thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+        <%- include('../partitals/admin/footer') %>

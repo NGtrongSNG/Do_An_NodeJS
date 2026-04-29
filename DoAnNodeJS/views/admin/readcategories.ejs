@@ -1,0 +1,69 @@
+<%- include('../partitals/admin/header') %>
+
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div id="page-content-wrapper" class="w-100">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+                        <span class="text-gold font-weight-bold ml-3">QUẢN LÝ DANH MỤC</span>
+                        <div class="ml-auto mr-3">
+                            <a href="/admin/categories/add" class="btn btn-warning btn-sm">
+                                <i class="fas fa-plus"></i> Thêm danh mục
+                            </a>
+                        </div>
+                    </nav>
+
+                    <div class="container-fluid p-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <table class="table table-hover align-middle">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="20%">ID</th>
+                                            <th width="20%">Tên danh mục</th>
+                                            <th width="20%">Số Lượng Bài Viết</th>
+                                            <th width="20%">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% categories.forEach(category=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= category.ID %>
+                                                </td>
+                                                <td>
+                                                    <%= category.name %>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-info">
+                                                        <%= category.post_count %> bài
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="/admin/categories/edit/<%= category.ID %>"
+                                                        class="btn btn-sm btn-outline-primary"><i
+                                                            class="fas fa-edit"></i></a>
+                                                    <a href="/admin/categories/delete/<%= category.ID %>"
+                                                        class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Em có chắc muốn xóa danh mục này không?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+
+                                <% if(categories.length==0) { %>
+                                    <div class="text-center p-5">
+                                        <p class="text-muted">Chưa có danh mục nào. Hãy thêm danh mục đầu tiên nhé!</p>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+        <%- include('../partitals/admin/footer') %>

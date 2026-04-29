@@ -1,0 +1,88 @@
+<%- include ('../partitals/user/head')%>
+<%- include ('../partitals/user/header')%>
+<%- include ('../partitals/user/navbar')%>
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb bg-light">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page text-uppercase font-weight-bold">
+                <%= category.name %>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="section-title mb-4">
+                <h2 class="text-uppercase font-weight-bold border-left border-primary pl-3" style="border-width: 5px !important;">
+                    Chuyên mục: <%= category.name %>
+                </h2>
+            </div>
+
+            <% if (posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+                    <div class="row mb-4 bg-white shadow-sm no-gutters border rounded overflow-hidden" style="transition: 0.3s;">
+                        <div class="col-md-5">
+                            <a href="/post/<%= post.id || post.ID %>">
+                                <img src="/img/<%= post.Image %>" class="img-fluid h-100" style="object-fit: cover; min-height: 200px;" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-7 p-3 d-flex flex-column justify-content-center">
+                            <div class="mb-2">
+                                <small class="text-primary font-weight-bold text-uppercase"><%= category.name %></small>
+                                <span class="px-2 text-muted">|</span>
+                                <small class="text-muted"><%= post.Create_at.toLocaleDateString() %></small>
+                            </div>
+                            <h4 class="font-weight-bold">
+                                <a href="/posts/<%= post.id || post.ID %>" class="text-dark text-decoration-none">
+                                    <%= post.Title %>
+                                </a>
+                            </h4>
+                            <p class="text-muted small">
+                                <%= post.Summary ? post.Summary.substring(0, 120) : '' %>...
+                            </p>
+                            <div class="mt-auto">
+                                <small class="text-dark"><i class="fas fa-user-edit mr-1"></i><%= post.fullname %></small>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="alert alert-info text-center py-5">
+                    <i class="fas fa-folder-open fa-3x mb-3"></i>
+                    <p>Hiện chưa có bài viết nào trong chuyên mục này.</p>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="mb-5">
+                <h4 class="text-uppercase font-weight-bold mb-3">Tất cả chuyên mục</h4>
+                <div class="list-group">
+                    <% allCategories.forEach(cat => { %>
+                        <a href="/category/<%= cat.ID %>" 
+                           class="list-group-item list-group-item-action d-flex justify-content-between align-items-center <%= cat.ID == category.ID ? 'active' : '' %>">
+                            <%= cat.name %>
+                            <i class="fas fa-chevron-right small"></i>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="bg-dark p-4 text-center text-white rounded">
+                <h5 class="font-weight-bold">Quảng cáo</h5>
+                <p class="small">Liên hệ đặt chỗ tại đây</p>
+                <div class="bg-secondary py-5">300 x 250</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .no-gutters:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    }
+</style>
+
+<%- include ('../partitals/user/footer')%>

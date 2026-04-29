@@ -1,0 +1,73 @@
+<%- include('../partitals/admin/header') %>
+
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div id="page-content-wrapper" class="w-100">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3">
+                        <span class="text-gold font-weight-bold ml-3">QUẢN LÝ NGƯỜI DÙNG</span>
+                        <div class="ml-auto mr-3">
+                            <a href="/admin/users/add" class="btn btn-warning btn-sm">
+                                <i class="fas fa-plus"></i> Thêm Người Dùng
+                            </a>
+                        </div>
+                    </nav>
+
+                    <div class="container-fluid p-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <table class="table table-hover align-middle">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="10%">ID</th>
+                                            <th width="10%">Tên Đăng Nhập</th>
+                                            <th width="20%">fullname</th>
+                                            <th width="20%">Password</th>
+                                            <th width="20%">role</th>
+                                            <th width="20%">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% users.forEach(user=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= user.ID %>
+                                                </td>
+                                                <td>
+                                                    <%= user.username %>
+                                                </td>
+                                                <td>
+                                                    <%= user.fullname %>
+                                                </td>
+                                                <td>
+                                                    <%= user.password %>
+                                                </td>
+                                                <td>
+                                                    <%= user.role %>
+                                                </td>
+                                                <td>
+                                                    <a href="/admin/users/edit/<%= user.ID %>"
+                                                        class="btn btn-sm btn-outline-primary"><i
+                                                            class="fas fa-edit"></i></a>
+                                                    <a href="/admin/users/delete/<%= user.ID %>"
+                                                        class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Em có chắc muốn tài khoản này không?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+
+                                <% if(users.length==0) { %>
+                                    <div class="text-center p-5">
+                                        <p class="text-muted">Chưa có danh mục nào. Hãy thêm danh mục đầu tiên nhé!</p>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+                <%- include('../partitals/admin/footer') %>

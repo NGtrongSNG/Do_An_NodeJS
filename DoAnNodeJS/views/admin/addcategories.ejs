@@ -1,0 +1,29 @@
+<%- include('../partitals/admin/header') %>
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div class="d-flex" id="wrapper">
+
+                    <div id="page-content-wrapper" class="w-100">
+                        <nav class="navbar navbar-dark bg-black py-3 px-3">
+                            <span class="text-gold font-weight-bold">VIẾT THỂ LOẠI DANH MỤC MỚI</span>
+                        </nav>
+                        <div class="container-fluid p-4">
+                            <form action="/admin/categories/add" method="POST"
+                                class="bg-white p-4 shadow-sm">
+
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục..."
+                                        required>
+                                </div>
+
+                            
+                                <button type="submit" class="btn btn-warning font-weight-bold mt-3">THÊM DANH MỤC</button>
+                                <a href="/admin/categories" class="btn btn-secondary mt-3 ml-2">Hủy</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <%- include('../partitals/admin/footer') %>

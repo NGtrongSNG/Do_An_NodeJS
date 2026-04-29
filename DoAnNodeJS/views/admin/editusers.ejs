@@ -1,0 +1,45 @@
+<%- include('../partitals/admin/header') %>
+    <%- include('../partitals/admin/sidebar') %>
+        <div id="page-content-wrapper">
+            <%- include('../partitals/admin/navbar_expand') %>
+                <div class="container-fluid py-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h5 class="m-0 font-weight-bold text-primary">Chỉnh Sửa Thông Tin Thành Viên</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/admin/users/edit/<%= user.ID %>" method="POST">
+
+                                <div class="form-group mb-4">
+                                    <label class="font-weight-bold text-secondary">Tên đăng nhập (Username)</label>
+                                    <input type="text" name="username" class="form-control" value="<%= user.username %>"
+                                        required>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="font-weight-bold text-secondary">Họ và Tên</label>
+                                    <input type="text" name="fullname" class="form-control" value="<%= user.fullname %>"
+                                        required>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="font-weight-bold text-secondary">Quyền hạn hệ thống</label>
+                                    <select name="role" class="form-control">
+                                        <option value="User" <%=user.role==='user' ? 'selected' : '' %>>User (Người dùng
+                                            thường)</option>
+                                        <option value="Admin" <%=user.role==='admin' ? 'selected' : '' %>>Admin (Quản
+                                            trị viên)</option>
+                                        <option value="Author" <%=user.role==='Author' ? 'selected' : '' %>>Author (Tác giả)</option>
+                                    </select>
+                                </div>
+
+                                <div class="border-top pt-4">
+                                    <button type="submit" class="btn btn-primary px-4">Lưu Thay Đổi</button>
+                                    <a href="/admin/users" class="btn btn-light border ml-2">Hủy</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <%- include('../partitals/admin/footer') %>
